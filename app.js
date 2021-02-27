@@ -11,9 +11,10 @@ require('dotenv/config');
 const corsMidlleWare = require('./middlewares/cors');
 
 // DB Connection
+const stringConnection = process.env.DB_CONNECTION.replace('<NAME>', process.env.NAME).replace('<PASSWORD>', process.env.PASSWORD);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect(process.env.DB_CONNECTION)
+mongoose.connect(stringConnection)
     .then(() => console.log('Connect DB Successfully'))
     .catch(err => console.log(err))
 
