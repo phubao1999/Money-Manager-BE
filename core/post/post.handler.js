@@ -72,7 +72,8 @@ const updatePost = async req => {
             {
                 $set: {
                     title: req.body.title,
-                    description: req.body.description
+                    description: req.body.description,
+                    date: Date.now()
                 }
             }
         );
