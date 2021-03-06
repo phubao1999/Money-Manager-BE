@@ -15,7 +15,7 @@ const stringConnection = process.env.DB_CONNECTION.replace('<NAME>', process.env
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect(stringConnection)
-    .then(() => console.log('Connect DB Successfully. And This is test git fetch'))
+    .then(() => console.log('Connect DB Successfully. And This is test git fetch. Test Source Tree 2'))
     .catch(err => console.log(err))
 
 app.use(cors(corsMidlleWare));
