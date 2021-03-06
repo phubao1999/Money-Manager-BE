@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//TODO Create new field: id?
 const PostSchema = mongoose.Schema({
     title: {
         type: String,
