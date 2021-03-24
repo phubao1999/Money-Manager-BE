@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const postHandle = require('../../core/post/post.handler');
+const resHelper = require('../../helper/responseHelper');
 
 router.get('/', async (req, res) => {
     try {
@@ -10,36 +11,36 @@ router.get('/', async (req, res) => {
         } else {
             result = await postHandle.getAllPosts();
         }
-        res.json({ data: result });
+        resHelper.sendResponse(res, result);
     } catch (err) {
-        res.json({ message: err.message });
+        resHelper.sendError(res, err.message);
     }
 });
 
 router.post('/', async (req, res) => {
     try {
         const result = await postHandle.addingPost(req);
-        res.json({ data: result });
+        resHelper.sendResponse(res, result);
     } catch (err) {
-        res.json({ message: err.message });
+        resHelper.sendError(res, err.message);
     }
 });
 
 router.delete('/', async (req, res) => {
     try {
         const result = await postHandle.deletePost(req);
-        res.json({ data: result });
+        resHelper.sendResponse(res, result);
     } catch (err) {
-        res.json({ message: err.message });
+        resHelper.sendError(res, err.message);
     }
 });
 
 router.put('/', async (req, res) => {
     try {
         const result = await postHandle.updatePost(req);
-        res.json({ data: result });
+        resHelper.sendResponse(res, result);
     } catch (err) {
-        res.json({ message: err.message });
+        resHelper.sendError(res, err.message);
     }
 });
 

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const resHelper = require('../helper/responseHelper');
 
 const veryfiToken = (req, res, next) => {
     // Get header value
@@ -6,16 +7,16 @@ const veryfiToken = (req, res, next) => {
     if (bearerHeader) {
         const token = bearerHeader.split(' ')[1];
         if (token === null) {
-            return res.sendStatus(401)
+            return resHelper.sendError(res, "Unauthorized", 401);
         } else {
             jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-                if (err) return res.sendStatus(403);
+                if (err) return resHelper.sendError(res, err, 403);
                 req.user = user;
                 next();
             });
         }
     } else {
-        return res.sendStatus(401);
+        return resHelper.sendError(res, "Unauthorized", 401);
     }
 }
 

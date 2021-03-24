@@ -1,0 +1,10 @@
+{
+    "apiMessage": {
+        "success": "Process Successfully",
+        "status_400": "Bad Request",
+        "status_401": "Unauthorized",
+        "status_403": "Forbidden",
+        "status_404": "Not Found",
+        "status_405": "Method Not Allowed"
+    }
+}
