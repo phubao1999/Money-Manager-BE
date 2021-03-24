@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jwtHelper = require('../../helper/jwtHelper');
+const resHelper = require('../../helper/responseHelper');
 
 router.post('/login', (req, res) => {
     // Mock User
@@ -9,7 +10,7 @@ router.post('/login', (req, res) => {
         username: 'baopt',
         email: 'phutuongbao1999@gmail.com'
     }
-    res.json({ token: jwtHelper.generateAccessToken(user) });
+    resHelper.sendResponse(res, jwtHelper.generateAccessToken(user));
 });
 
 module.exports = router;
