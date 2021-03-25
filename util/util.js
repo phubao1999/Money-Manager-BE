@@ -18,5 +18,9 @@ module.exports = {
     getTimeStampNow() {
         const date = new Date();
         return date.getTime();
+    },
+
+    getTokenString(string) {
+        return string.split(' ')[1];
     }
 }
