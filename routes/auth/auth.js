@@ -3,8 +3,6 @@ const router = express.Router();
 const authHandler = require('../../core/auth/auth.handler');
 const jwtHelper = require('../../helper/jwtHelper');
 const resHelper = require('../../helper/responseHelper');
-const verifyToken = require('../../middlewares/jsonWebToken');
-const util = require('../../util/util');
 
 router.post('/login', (req, res) => {
     const user = {

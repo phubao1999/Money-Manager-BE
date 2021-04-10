@@ -22,11 +22,11 @@ const getUserByEmail = async email => {
 const registerUser = async req => {
     const user = new User({
         email: req.body.email,
-        userName: req.body.user_name,
+        user_name: req.body.user_name,
         password: req.body.password
     });
     try {
-        const userChecking = getUserByEmail(req.body.email);
+        const userChecking = await getUserByEmail(req.body.email);
         if (userChecking) {
             throw message.authentication.duplicate_mail
         };
