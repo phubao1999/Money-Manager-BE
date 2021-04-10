@@ -1,6 +1,7 @@
 const User = require('../../models/User');
 const message = require('../../messages/message.json');
 const util = require('../../util/util');
+const jwtHelper = require('../../helper/jwtHelper');
 
 /**
  * @param {*} email 
@@ -9,6 +10,47 @@ const util = require('../../util/util');
 const getUserByEmail = async email => {
     try {
         const user = await User.findOne({ email });
+        return user;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+/**
+ * 
+ * @param {*} user 
+ * @returns Update User Token
+ */
+const updateUserToken = async user => {
+    try {
+        const tokenGen = await jwtHelper.generateAccessToken(user);
+        const userTokenUpdate = await User.updateOne(
+            { _id: user._id },
+            {
+                $set: {
+                    token: tokenGen.token,
+                    timeLogin: tokenGen.timeLogin,
+                    expiresIn: tokenGen.expiresIn,
+                    refreshToken: tokenGen.refreshToken,
+                    refreshTokenExpiresIn: tokenGen.refreshTokenExpiresIn
+                }
+            }
+        );
+
+        return userTokenUpdate;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+/**
+ * 
+ * @param {*} userName 
+ * @returns user
+ */
+const getUserByUserName = async userName => {
+    try {
+        const user = await User.findOne({ user_name: userName });
         return user;
     } catch (error) {
         throw new Error(error);
@@ -27,17 +69,53 @@ const registerUser = async req => {
         password: util.gennerateAsMd5(req.body.password)
     });
     try {
-        const userChecking = await getUserByEmail(req.body.email);
+        const userChecking = await getUserByEmail(user.email);
+
         if (userChecking) {
-            throw message.authentication.duplicate_mail
+            throw message.authentication.duplicate_mail;
         };
+
+        const userCheckingName = await getUserByUserName(user.user_name);
+
+        if (userCheckingName) {
+            throw message.authentication.duplicate_name;
+        }
+
         const registerUser = await user.save();
+
         return registerUser;
     } catch (error) {
         throw new Error(error);
     }
 }
 
+/**
+ * 
+ * @param {*} req 
+ * @returns User Login Response
+ */
+const login = async req => {
+    try {
+        const user = await getUserByUserName(req.body.user_name);
+
+        if (!user) {
+            throw message.authentication.not_find_user_name;
+        }
+
+        if (!util.compareStringAsMd5(req.body.password, user.password)) {
+            throw message.authentication.password_invalid;
+        }
+
+        await updateUserToken(user);
+
+        return user;
+
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 module.exports = {
-    registerUser
+    registerUser,
+    login
 };

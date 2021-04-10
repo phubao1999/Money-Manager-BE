@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const authHandler = require('../../core/auth/auth.handler');
-const jwtHelper = require('../../helper/jwtHelper');
 const resHelper = require('../../helper/responseHelper');
 
-router.post('/login', (req, res) => {
-    const user = {
-        id: 1,
-        username: 'baopt',
-        email: 'phutuongbao1999@gmail.com'
+router.post('/login', async (req, res) => {
+    try {
+        const result = await authHandler.login(req);
+        resHelper.sendResponse(res, result);
+    } catch (err) {
+        resHelper.sendError(res, err.message);
     }
-    resHelper.sendResponse(res, jwtHelper.generateAccessToken(user));
 });
 
-// TODO: Encrypt Password. Active account
+// TODO: Encrypt Password By Bcrypt. Active account
 router.post('/register', async (req, res) => {
     try {
         const result = await authHandler.registerUser(req);

@@ -30,7 +30,7 @@ module.exports = {
         return md5(string);
     },
 
-    compareStringAsMd5(string1, string2) {
-        return md5(string1) === md5(string2);
+    compareStringAsMd5(stringToMD5, stringAsMD5) {
+        return md5(stringToMD5) === stringAsMD5;
     }
 }

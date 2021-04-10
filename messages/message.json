@@ -11,6 +11,9 @@
         "email": "Please fill a valid email address"
     },
     "authentication": {
-        "duplicate_mail": "This email have been register"
+        "duplicate_mail": "This email have been register",
+        "duplicate_name": "This user name have been register",
+        "not_find_user_name": "Can't not find this user name",
+        "password_invalid": "Your password is incorrect"
     }
 }

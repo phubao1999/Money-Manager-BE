@@ -23,6 +23,21 @@ const UserSchema = mongoose.Schema({
     status_active: {
         type: Number,
         default: 0
+    },
+    token: {
+        type: String
+    },
+    timeLogin: {
+        type: Number
+    },
+    expiresIn: {
+        type: Number
+    },
+    refreshToken: {
+        type: String
+    },
+    refreshTokenExpiresIn: {
+        type: Number
     }
 });
 
