@@ -6,5 +6,11 @@
         "status_403": "Forbidden",
         "status_404": "Not Found",
         "status_405": "Method Not Allowed"
+    },
+    "validateMessage": {
+        "email": "Please fill a valid email address"
+    },
+    "authentication": {
+        "duplicate_mail": "This email have been register"
     }
 }
