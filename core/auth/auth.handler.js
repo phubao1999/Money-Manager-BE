@@ -1,5 +1,6 @@
 const User = require('../../models/User');
 const message = require('../../messages/message.json');
+const util = require('../../util/util');
 
 /**
  * @param {*} email 
@@ -23,7 +24,7 @@ const registerUser = async req => {
     const user = new User({
         email: req.body.email,
         user_name: req.body.user_name,
-        password: req.body.password
+        password: util.gennerateAsMd5(req.body.password)
     });
     try {
         const userChecking = await getUserByEmail(req.body.email);

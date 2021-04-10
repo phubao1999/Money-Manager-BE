@@ -1,3 +1,5 @@
+const md5 = require('md5');
+
 module.exports = {
 
     /**
@@ -22,5 +24,13 @@ module.exports = {
 
     getTokenString(string) {
         return string.split(' ')[1];
+    },
+
+    gennerateAsMd5(string) {
+        return md5(string);
+    },
+
+    compareStringAsMd5(string1, string2) {
+        return md5(string1) === md5(string2);
     }
 }
