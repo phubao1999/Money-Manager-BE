@@ -12,13 +12,17 @@ const UserSchema = mongoose.Schema({
         require: true,
         validate: [emailValidate, message.validateMessage.email]
     },
-    userName: {
+    user_name: {
         type: String,
         require: true
     },
     password: {
         type: String,
         require: true
+    },
+    status_active: {
+        type: Number,
+        default: 0
     }
 });
 
