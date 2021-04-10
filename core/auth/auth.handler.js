@@ -2,6 +2,7 @@ const User = require('../../models/User');
 const message = require('../../messages/message.json');
 const util = require('../../util/util');
 const jwtHelper = require('../../helper/jwtHelper');
+const userResonse = require('../../models/response/User');
 
 /**
  * @param {*} email 
@@ -108,7 +109,7 @@ const login = async req => {
 
         await updateUserToken(user);
 
-        return user;
+        return userResonse(user);
 
     } catch (error) {
         throw new Error(error);
