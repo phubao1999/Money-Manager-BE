@@ -1,7 +1,7 @@
 const message = require('../messages/message.json');
 
 module.exports = {
-    sendResponse(res, data, status) {
+    sendResponse(res, data, status, msg) {
         const response = {
             meta: {
                 status: status || 200,

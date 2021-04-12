@@ -22,6 +22,11 @@ module.exports = {
         return date.getTime();
     },
 
+    getTimeStampNowAsTokenTime() {
+        const date = new Date();
+        return Math.floor(date.getTime() / 1000);
+    },
+
     getTokenString(string) {
         return string.split(' ')[1];
     },
@@ -32,5 +37,9 @@ module.exports = {
 
     compareStringAsMd5(stringToMD5, stringAsMD5) {
         return md5(stringToMD5) === stringAsMD5;
+    },
+
+    getTokenString(requestHeader) {
+        return requestHeader.headers['authorization'].split(' ')[1];
     }
 }

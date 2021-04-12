@@ -25,19 +25,24 @@ const UserSchema = mongoose.Schema({
         default: 0
     },
     token: {
-        type: String
+        type: String,
+        default: ""
     },
     timeLogin: {
-        type: Number
+        type: Number,
+        timeLogin: 0
     },
     expiresIn: {
-        type: Number
+        type: Number,
+        timeLogin: 0
     },
     refreshToken: {
-        type: String
+        type: String,
+        default: ""
     },
     refreshTokenExpiresIn: {
-        type: Number
+        type: Number,
+        timeLogin: 0
     }
 });
 

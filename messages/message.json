@@ -14,6 +14,7 @@
         "duplicate_mail": "This email have been register",
         "duplicate_name": "This user name have been register",
         "not_find_user_name": "Can't not find this user name",
-        "password_invalid": "Your password is incorrect"
+        "password_invalid": "Your password is incorrect",
+        "logout": "Logout Sucessfully"
     }
 }

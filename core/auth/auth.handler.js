@@ -116,7 +116,38 @@ const login = async req => {
     }
 }
 
+/**
+ * 
+ * TODO Revoke Token
+ * 
+ * @param {*} req 
+ * @returns void
+ */
+const logout = async req => {
+    try {
+        const token = util.getTokenString(req);
+        const tokenInfo = jwtHelper.getTokenInfo(token);
+        await User.updateOne(
+            { _id: tokenInfo.configTokenInfo._id },
+            {
+                $unset: {
+                    token: "",
+                    timeLogin: 0,
+                    expiresIn: 0,
+                    refreshToken: "",
+                    refreshTokenExpiresIn: 0
+                }
+            }
+        );
+
+        return message.authentication.logout;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
 module.exports = {
     registerUser,
-    login
+    login,
+    logout
 };
