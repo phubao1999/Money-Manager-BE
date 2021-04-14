@@ -5,7 +5,7 @@ module.exports = {
         const response = {
             meta: {
                 status: status || 200,
-                message: message.apiMessage.success
+                message: msg || message.apiMessage.success
             },
             data
         }
