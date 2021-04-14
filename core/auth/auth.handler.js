@@ -29,9 +29,7 @@ const updateUserToken = async user => {
             { _id: user._id },
             {
                 $set: {
-                    token: tokenGen.token,
                     timeLogin: tokenGen.timeLogin,
-                    expiresIn: tokenGen.expiresIn,
                     refreshToken: tokenGen.refreshToken,
                     refreshTokenExpiresIn: tokenGen.refreshTokenExpiresIn
                 }
