@@ -1,11 +1,11 @@
 const message = require('../messages/message.json');
 
 module.exports = {
-    sendResponse(res, data, status, msg) {
+    sendResponse(res, data, objConfig) {
         const response = {
             meta: {
-                status: status || 200,
-                message: msg || message.apiMessage.success
+                status: objConfig ? objConfig.status : 200,
+                message: objConfig ? objConfig.msg : message.apiMessage.success
             },
             data
         }
