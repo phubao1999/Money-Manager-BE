@@ -1,4 +1,4 @@
-const userResonse = user => {
+const userResonse = (user: any) => {
     return {
         user_name: user.user_name,
         token: user.token,
@@ -9,4 +9,4 @@ const userResonse = user => {
     }
 };
 
-module.exports = userResonse;
+export default userResonse;

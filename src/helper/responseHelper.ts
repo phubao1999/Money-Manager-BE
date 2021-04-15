@@ -4,7 +4,7 @@ import message from '../messages/message.json';
 export default class ResponseHelper {
     constructor() { }
 
-    static sendResponse(res: Response, data: any, status?: number): void {
+    public static sendResponse(res: Response, data: any, status?: number): void {
         const response = {
             meta: {
                 status: status || 200,
@@ -15,7 +15,7 @@ export default class ResponseHelper {
         res.send({ response });
     };
 
-    static sendError(res: Response, err: ErrorRequestHandler, status?: number): void {
+    public static sendError(res: Response, err: ErrorRequestHandler | string, status?: number): void {
         let resStatus;
         let resMsg;
         switch (status) {

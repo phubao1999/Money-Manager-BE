@@ -2,7 +2,7 @@ import { Router } from 'express';
 const router = Router();
 import ResponseHelper from '../../helper/responseHelper';
 const authHandler = require('../../core/auth/auth.handler');
-const verifyToken = require('../../middlewares/jsonWebToken');
+import verifiTokenMiddleWares from '../../middlewares/verifyToken.middlewares';
 
 router.post('/login', async (req, res) => {
     try {
@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.post('/logout', verifyToken, async (req, res) => {
+router.post('/logout', verifiTokenMiddleWares, async (req, res) => {
     try {
         const result = await authHandler.logout(req);
         ResponseHelper.sendResponse(res, result);

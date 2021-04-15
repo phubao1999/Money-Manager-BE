@@ -1,15 +1,15 @@
 import { Router } from 'express';
 const router = Router();
-const postHandle = require('../../core/post/post.handler');
 import ResponseHelper from '../../helper/responseHelper';
+import PostHandler from '../../core/post/post.handler';
 
 router.get('/', async (req, res) => {
     try {
         let result;
         if (req.query.postId) {
-            result = await postHandle.getPostById(req);
+            result = await PostHandler.getPostById(req);
         } else {
-            result = await postHandle.getAllPosts();
+            result = await PostHandler.getAllPosts();
         }
         ResponseHelper.sendResponse(res, result);
     } catch (err) {
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const result = await postHandle.addingPost(req);
+        const result = await PostHandler.addingPost(req);
         ResponseHelper.sendResponse(res, result);
     } catch (err) {
         ResponseHelper.sendError(res, err.message);
@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 
 router.delete('/', async (req, res) => {
     try {
-        const result = await postHandle.deletePost(req);
+        const result = await PostHandler.deletePost(req);
         ResponseHelper.sendResponse(res, result);
     } catch (err) {
         ResponseHelper.sendError(res, err.message);
@@ -37,7 +37,7 @@ router.delete('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
     try {
-        const result = await postHandle.updatePost(req);
+        const result = await PostHandler.updatePost(req);
         ResponseHelper.sendResponse(res, result);
     } catch (err) {
         ResponseHelper.sendError(res, err.message);

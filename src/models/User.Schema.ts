@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const message = require('../messages/message.json');
 
-const emailValidate = email => {
+const emailValidate = (email: string) => {
     const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return pattern.test(email);
 };
@@ -46,4 +46,4 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);

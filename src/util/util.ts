@@ -1,6 +1,7 @@
+import { Request } from 'express';
 const md5 = require('md5');
 
-module.exports = {
+export default {
 
     /**
      * 
@@ -27,19 +28,15 @@ module.exports = {
         return Math.floor(date.getTime() / 1000);
     },
 
-    getTokenString(string) {
-        return string.split(' ')[1];
-    },
-
-    gennerateAsMd5(string) {
+    gennerateAsMd5(string: string) {
         return md5(string);
     },
 
-    compareStringAsMd5(stringToMD5, stringAsMD5) {
+    compareStringAsMd5(stringToMD5: string, stringAsMD5: string) {
         return md5(stringToMD5) === stringAsMD5;
     },
 
-    getTokenString(requestHeader) {
-        return requestHeader.headers['authorization'].split(' ')[1];
+    getTokenString(requestHeader: Request) {
+        return (requestHeader.headers['authorization'])?.toString().split(' ')[1];
     }
 }
