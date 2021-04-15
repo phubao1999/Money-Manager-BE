@@ -1,7 +1,8 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express';
 const resHelper = require('../helper/responseHelper');
 
-const veryfiToken = (req, res, next) => {
+const veryfiToken = (req: Request, res: Response, next: NextFunction) => {
     // Get header value
     const bearerHeader = req.headers['authorization'];
     if (bearerHeader) {
@@ -9,9 +10,9 @@ const veryfiToken = (req, res, next) => {
         if (token === null) {
             return resHelper.sendError(res, "Unauthorized", 401);
         } else {
-            jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+            jwt.verify(token, (process.env.TOKEN_SECRET as string), (err, user) => {
                 if (err) return resHelper.sendError(res, err, 403);
-                req.user = user;
+                req.body.user = user;
                 next();
             });
         }
@@ -20,4 +21,4 @@ const veryfiToken = (req, res, next) => {
     }
 }
 
-module.exports = veryfiToken;
+export default veryfiToken;

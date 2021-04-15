@@ -1,7 +1,10 @@
-const corsMidlleWare = (req, callback) => {
+import { Request } from 'express';
+
+export default function corsMidlleWare(req: Request, callback: Function) {
     const whitelist = ['http://localhost:4200', 'https://codepen.io/pen/', 'https://cdpn.io'];
     let corsOptions;
-    let isDomainAllowed = whitelist.indexOf(req.header('Origin')) !== -1;
+    const origin: string = req.get('origin') as string;
+    let isDomainAllowed = whitelist.indexOf(origin) !== -1;
 
     if (isDomainAllowed) {
         corsOptions = { origin: true }
@@ -10,6 +13,3 @@ const corsMidlleWare = (req, callback) => {
     }
     callback(null, corsOptions)
 }
-
-
-module.exports = corsMidlleWare;

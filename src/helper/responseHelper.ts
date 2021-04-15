@@ -1,7 +1,10 @@
-const message = require('../messages/message.json');
+import { ErrorRequestHandler, Response } from 'express';
+import message from '../messages/message.json';
 
-module.exports = {
-    sendResponse(res, data, status, msg) {
+export default class ResponseHelper {
+    constructor() { }
+
+    static sendResponse(res: Response, data: any, status?: number): void {
         const response = {
             meta: {
                 status: status || 200,
@@ -10,9 +13,9 @@ module.exports = {
             data
         }
         res.send({ response });
-    },
+    };
 
-    sendError(res, err, status) {
+    static sendError(res: Response, err: ErrorRequestHandler, status?: number): void {
         let resStatus;
         let resMsg;
         switch (status) {
@@ -45,4 +48,5 @@ module.exports = {
         }
         res.send({ response });
     }
+
 }

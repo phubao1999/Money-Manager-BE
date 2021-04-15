@@ -1,4 +1,4 @@
-const Post = require('../../models/Post');
+import Post from '../../models/Post';
 
 /**
  * @description Create new post 
