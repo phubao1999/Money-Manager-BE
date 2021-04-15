@@ -1,13 +1,13 @@
 import constant from "../../constant/constant";
 
-const userResonse = (user: any) => {
+const userResonse = (user: any, tokenObj: any) => {
     return {
         user_name: user.user_name,
-        token: user.token,
-        expiresIn: user.expiresIn,
-        timeLogin: user.timeLogin,
-        refreshToken: user.refreshToken,
-        refreshTokenExpiresIn: user.refreshTokenExpiresIn,
+        token: tokenObj.token,
+        expiresIn: tokenObj.expiresIn,
+        timeLogin: tokenObj.timeLogin,
+        refreshToken: tokenObj.refreshToken,
+        refreshTokenExpiresIn: tokenObj.refreshTokenExpiresIn,
         tokenType: constant.TOKEN_TYPE
     }
 };

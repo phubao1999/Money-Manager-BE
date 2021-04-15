@@ -1,5 +1,3 @@
-//TODO Fix bug Login API Not response Token
-
 import { Request } from 'express';
 import userResonse from '../../models/response/User';
 import UserSchema from '../../models/User.Schema';
@@ -29,20 +27,21 @@ const getUserByEmail = async (email: string) => {
 const updateUserToken = async (user: any) => {
     try {
         const tokenGen = await JwtHelper.generateAccessToken(user);
-        const userTokenUpdate = await UserSchema.updateOne(
+        const tokenConfig = {
+            token: tokenGen.token,
+            timeLogin: tokenGen.timeLogin,
+            expiresIn: tokenGen.expiresIn,
+            refreshToken: tokenGen.refreshToken,
+            refreshTokenExpiresIn: tokenGen.refreshTokenExpiresIn
+        }
+        await UserSchema.updateOne(
             { _id: user._id },
             {
-                $set: {
-                    token: tokenGen.token,
-                    timeLogin: tokenGen.timeLogin,
-                    expiresIn: tokenGen.expiresIn,
-                    refreshToken: tokenGen.refreshToken,
-                    refreshTokenExpiresIn: tokenGen.refreshTokenExpiresIn
-                }
+                $set: tokenConfig
             }
         );
 
-        return userTokenUpdate;
+        return tokenConfig;
     } catch (error) {
         throw new Error(error);
     }
@@ -110,9 +109,9 @@ const login = async (req: Request) => {
             throw message.authentication.password_invalid;
         }
 
-        await updateUserToken(user);
+        const tokenConfig = await updateUserToken(user);
 
-        return userResonse(user);
+        return userResonse(user, tokenConfig);
 
     } catch (error) {
         throw new Error(error);
