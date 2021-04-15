@@ -7,8 +7,8 @@ export default class ResponseHelper {
     public static sendResponse(res: Response, data: any, status?: number): void {
         const response = {
             meta: {
-                status: status || 200,
-                message: message.apiMessage.success
+                status: objConfig ? objConfig.status : 200,
+                message: objConfig ? objConfig.msg : message.apiMessage.success
             },
             data
         }

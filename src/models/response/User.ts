@@ -5,7 +5,8 @@ const userResonse = (user: any) => {
         expiresIn: user.expiresIn,
         timeLogin: user.timeLogin,
         refreshToken: user.refreshToken,
-        refreshTokenExpiresIn: user.refreshTokenExpiresIn
+        refreshTokenExpiresIn: user.refreshTokenExpiresIn,
+        tokenType: constant.tokenType
     }
 };
 
