@@ -3,11 +3,6 @@ Contributors Forks Stargazers Issues MIT License LinkedIn
 
 Logo
 
-TODO
-
-Create Logout Flow
-Create RefeshToken Flow
-Create new model of response user
 
 Best-README-Template
 An awesome README template to jumpstart your projects!
