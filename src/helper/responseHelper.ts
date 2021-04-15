@@ -4,7 +4,7 @@ import message from '../messages/message.json';
 export default class ResponseHelper {
     constructor() { }
 
-    public static sendResponse(res: Response, data: any, status?: number): void {
+    public static sendResponse(res: Response, data: any, objConfig?: { status: string, msg: number }): void {
         const response = {
             meta: {
                 status: objConfig ? objConfig.status : 200,
