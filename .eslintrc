@@ -16,14 +16,88 @@
             "error",
             "double"
         ],
+        "@typescript-eslint/interface-name-prefix": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/no-explicit-any": 1,
-        "@typescript-eslint/no-inferrable-types": [
-            "warn",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/camelcase": "off",
+        "@typescript-eslint/explicit-member-accessibility": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/array-type": "off",
+        "@typescript-eslint/no-parameter-properties": "off",
+        "@typescript-eslint/no-object-literal-type-assertion": "off",
+        "array-bracket-spacing": 2,
+        "block-scoped-var": "error",
+        "block-spacing": [
+            "error",
+            "always"
+        ],
+        "consistent-return": [
+            "error",
             {
-                "ignoreParameters": true
+                "treatUndefinedAsUnspecified": true
             }
         ],
-        "@typescript-eslint/no-unused-vars": "warn"
+        "dot-notation": "error",
+        "guard-for-in": "error",
+        "linebreak-style": "off",
+        "max-depth": 2,
+        "max-nested-callbacks": 2,
+        "max-params": 2,
+        "max-statements-per-line": [
+            "error",
+            {
+                "max": 2
+            }
+        ],
+        "max-statements": [
+            "error",
+            30,
+            {
+                "ignoreTopLevelFunctions": true
+            }
+        ],
+        "newline-after-var": [
+            "error",
+            "always"
+        ],
+        "newline-before-return": "error",
+        "newline-per-chained-call": "off",
+        "no-alert": "error",
+        "no-catch-shadow": "error",
+        "no-eq-null": "error",
+        "no-eval": "error",
+        "no-mixed-spaces-and-tabs": "off",
+        "no-multi-spaces": "error",
+        "no-multi-str": "error",
+        "no-restricted-globals": "error",
+        "no-unmodified-loop-condition": "error",
+        "no-whitespace-before-property": "error",
+        "one-var": [
+            "error",
+            {
+                "uninitialized": "always",
+                "initialized": "never"
+            }
+        ],
+        "vars-on-top": "error",
+        "complexity": [
+            "error",
+            8
+        ],
+        "curly": "error",
+        "eqeqeq": "error",
+        "quotes": "off",
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-var": "off",
+        "prefer-const": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/ban-ts-ignore": "off",
     }
 }
