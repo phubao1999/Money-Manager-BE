@@ -10,8 +10,13 @@ const verifiTokenMiddleWares = (req: Request, res: Response, next: NextFunction)
         if (token === null) {
             return ResponseHelper.sendError(res, "Unauthorized", 401);
         } else {
-            jwt.verify(token, (process.env.TOKEN_SECRET as string), (err, user) => {
-                if (err) return ResponseHelper.sendError(res, err.message, 403);
+            jwt.verify(token, (process.env.TOKEN_SECRET as string), (err: any, user) => {
+                if (err) {
+                    if (err.expiredAt) {
+                        console.log("Refesh Token Code Here");
+                    }
+                    return ResponseHelper.sendError(res, err.message, 403);
+                }
                 req.body.user = user;
                 next();
             });
