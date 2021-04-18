@@ -1,10 +1,11 @@
+import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+import constant from '../constant/constant';
 import ResponseHelper from '../helper/responseHelper';
 
 const verifiTokenMiddleWares = (req: Request, res: Response, next: NextFunction) => {
     // Get header value
-    const bearerHeader = req.headers['authorization'];
+    const bearerHeader = req.headers[constant.REQUEST_HEADER_TOKEN]?.toString();
     if (bearerHeader) {
         const token = bearerHeader.split(' ')[1];
         if (token === null) {
