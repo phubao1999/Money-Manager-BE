@@ -54,21 +54,27 @@ const refreshToken = (token: String, request: Request) => {
     if (!request.headers[constant.REQUEST_REFRESH_HEADER_TOKEN]) {
       reject({ message: message.refreshTokenMsg.non_token });
     }
+
     const refeshToken = request.headers[constant.REQUEST_REFRESH_HEADER_TOKEN]
       .toString()
       .split(" ")[1];
     const tokenInfo = JwtHelper.getTokenInfo(token).configTokenInfo;
+
     authHandler.getUserById(tokenInfo._id).then((user) => {
       if (!user) {
         reject({ message: message.refreshTokenMsg.non_user });
       }
+
       if (user.refreshToken !== refeshToken) {
         reject({ message: message.refreshTokenMsg.invalid_token });
       }
+
       const refeshTokenExpiresAt = user.timeLogin + user.refreshTokenExpiresIn;
+
       if (util.getTimeStampNowAsTokenTime() > refeshTokenExpiresAt) {
         reject({ message: message.refreshTokenMsg.token_expires });
       }
+
       resolve(JwtHelper.generateFromRefeshToken(tokenInfo));
     });
   });

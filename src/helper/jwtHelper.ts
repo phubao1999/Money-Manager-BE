@@ -1,12 +1,13 @@
 import jwt from "jsonwebtoken";
 import constant from "../constant/constant";
 import util from "../util/util";
+import * as env from "../environments/enviroments";
 require("dotenv/config");
 
 export default class JwtHelper {
   public static generateAccessToken = (user: any) => {
-    const expiresIn = constant.expires_In;
-    const refreshTokenExpiresIn = constant.refreshTokenExpiresIn;
+    const expiresIn = env.environment.expires_In;
+    const refreshTokenExpiresIn = env.environment.refreshTokenExpiresIn;
     const configTokenInfo = {
       _id: user._id.toString(),
       email: user.email,
@@ -38,7 +39,7 @@ export default class JwtHelper {
   };
 
   public static generateFromRefeshToken(tokenInfo: any) {
-    const expiresIn = constant.expires_In;
+    const expiresIn = env.environment.expires_In;
     return jwt.sign(
       {
         tokenInfo,
