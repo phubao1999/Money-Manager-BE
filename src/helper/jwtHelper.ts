@@ -1,8 +1,6 @@
 import jwt from "jsonwebtoken";
-import constant from "../constant/constant";
-import util from "../util/util";
 import * as env from "../environments/enviroments";
-require("dotenv/config");
+import util from "../util/util";
 
 export default class JwtHelper {
   public static generateAccessToken = (user: any) => {
@@ -17,14 +15,14 @@ export default class JwtHelper {
       {
         configTokenInfo,
       },
-      process.env.TOKEN_SECRET as string,
+      env.environment.TOKEN_SECRET,
       { expiresIn }
     );
     const refreshToken = jwt.sign(
       {
         configTokenInfo,
       },
-      process.env.REFRESH_TOKEN_SECRET as string,
+      env.environment.REFRESH_TOKEN_SECRET,
       { expiresIn: refreshTokenExpiresIn }
     );
 
@@ -44,7 +42,7 @@ export default class JwtHelper {
       {
         tokenInfo,
       },
-      process.env.TOKEN_SECRET as string,
+      env.environment.TOKEN_SECRET,
       { expiresIn }
     );
   }

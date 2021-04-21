@@ -6,6 +6,7 @@ import JwtHelper from "../helper/jwtHelper";
 import ResponseHelper from "../helper/responseHelper";
 import util from "../util/util";
 import message from "../messages/message.json";
+import * as env from "../environments/enviroments";
 
 const verifiTokenMiddleWares = (
   req: Request,
@@ -19,30 +20,26 @@ const verifiTokenMiddleWares = (
     if (token === null) {
       return ResponseHelper.sendError(res, "Unauthorized", 401);
     } else {
-      jwt.verify(
-        token,
-        process.env.TOKEN_SECRET as string,
-        (err: any, user) => {
-          if (err) {
-            if (err.expiredAt) {
-              return refreshToken(token, req)
-                .then((result) => {
-                  const objResponse = {
-                    msg: message.refreshTokenMsg.success,
-                    status: 201,
-                  };
-                  return ResponseHelper.sendResponse(res, result, objResponse);
-                })
-                .catch((errorr) => {
-                  return ResponseHelper.sendError(res, errorr.message, 403);
-                });
-            }
-            return ResponseHelper.sendError(res, err.message, 403);
+      jwt.verify(token, env.environment.TOKEN_SECRET, (err: any, user) => {
+        if (err) {
+          if (err.expiredAt) {
+            return refreshToken(token, req)
+              .then((result) => {
+                const objResponse = {
+                  msg: message.refreshTokenMsg.success,
+                  status: 201,
+                };
+                return ResponseHelper.sendResponse(res, result, objResponse);
+              })
+              .catch((errorr) => {
+                return ResponseHelper.sendError(res, errorr.message, 403);
+              });
           }
-          req.body.user = user;
-          next();
+          return ResponseHelper.sendError(res, err.message, 403);
         }
-      );
+        req.body.user = user;
+        next();
+      });
     }
   } else {
     return ResponseHelper.sendError(res, "Unauthorized", 401);
