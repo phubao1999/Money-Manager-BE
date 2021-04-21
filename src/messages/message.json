@@ -16,5 +16,12 @@
         "not_find_user_name": "Can't not find this user name",
         "password_invalid": "Your password is incorrect",
         "logout": "Logout Sucessfully"
+    },
+    "refreshTokenMsg": {
+        "non_token": "Can not find refesh token",
+        "invalid_token": "Forbiden, this is wrong refresh token",
+        "token_expires": "This refesh token have been exprires",
+        "non_user": "Can not find this user",
+        "success": "Refresh token successfully"
     }
 }

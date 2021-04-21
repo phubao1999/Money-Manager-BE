@@ -20,6 +20,19 @@ const getUserByEmail = async (email: string) => {
 }
 
 /**
+ * @param {*} id 
+ * @returns user
+ */
+ const getUserById = async (id: string) => {
+    try {
+        const user = await UserSchema.findOne({ _id: id });
+        return user;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+/**
  * 
  * @param {*} user 
  * @returns Update User Token
@@ -149,6 +162,7 @@ const logout = async (req: Request) => {
 };
 
 export default {
+    getUserById,
     getUserByEmail,
     updateUserToken,
     registerUser,
