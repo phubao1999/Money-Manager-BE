@@ -1,9 +1,5 @@
 FROM node:12-alpine
 
-ARG db_connection
-ARG NAME
-ARG PASSWORD
-
 WORKDIR /app
 
 COPY package*.json ./
@@ -13,6 +9,12 @@ RUN npm install
 COPY . .
 
 ENV PORT=3000
+
+ENV db_connection=value
+
+ENV NAME=value
+
+ENV PASSWORD=value
 
 EXPOSE 3000
 
