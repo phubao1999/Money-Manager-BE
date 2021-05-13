@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import * as env from "../environments/enviroments";
-import ResponseHelper from "../helper/responseHelper";
+import ResponseHelper from "./responseHelper";
 
 const redis = require("redis");
 const client = redis.createClient({
